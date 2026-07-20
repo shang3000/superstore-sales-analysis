@@ -163,6 +163,8 @@ data/external/*
 # ====================
 output/*
 !output/.gitkeep
+!output/images/
+!output/images/*.png
 
 reports/figures/*
 reports/dashboard/*
