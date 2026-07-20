@@ -1,0 +1,286 @@
+# ====================
+# Python
+# ====================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Logs
+*.log
+
+# ====================
+# Virtual Environments
+# ====================
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ====================
+# Jupyter Notebook
+# ====================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ====================
+# IDE
+# ====================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# PyCharm
+*.pycharm*
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.bak
+
+# ====================
+# OS Files
+# ====================
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.directory
+
+# ====================
+# Data Files
+# ====================
+
+# Raw data (keep in repo)
+# data/raw/ - tracked
+
+# Processed data (keep cleaned data for reproducibility)
+data/interim/*
+data/external/*
+!data/interim/.gitkeep
+!data/external/.gitkeep
+
+# Large data files (ignore everywhere except data/raw and data/processed)
+*.xlsx
+*.xls
+*.parquet
+*.hdf5
+*.h5
+
+# ====================
+# Output & Reports
+# ====================
+output/*
+!output/.gitkeep
+
+reports/figures/*
+reports/dashboard/*
+!reports/figures/.gitkeep
+!reports/dashboard/.gitkeep
+
+# Generated reports
+*.html
+!reports/*.html
+
+# ====================
+# Streamlit
+# ====================
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# ====================
+# AI Tools
+# ====================
+.claude/
+.mimocode/
+
+# ====================
+# Project Specific
+# ====================
+
+# start.bat (user-specific)
+# start.bat
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Environment
+.env
+.env.*
+.env.local
+.env.production
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes
+*.kube
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Documentation
+docs/_build/
+
+# Pyenv
+.python-version
+
+# Poetry
+poetry.lock
+pyproject.toml
+
+# Pipenv
+Pipfile
+Pipfile.lock
+
+# pdm
+.pdm.toml
+.pdm-python
+__pypackages__/
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.project
+.ropeproject
+
+# mkdocs
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre
+.pyre/
+
+# pytype
+.pytype/
+
+# Cython
+cython_debug/
