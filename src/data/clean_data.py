@@ -122,10 +122,8 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         df['Shipping Days'] = (df['Ship Date'] - df['Order Date']).dt.days
         print("   ✅ 运输天数: Shipping Days")
 
-    # 计算利润率（如果有 Sales 和 Profit）
-    if 'Sales' in df.columns and 'Profit' in df.columns:
-        df['Profit Margin'] = (df['Profit'] / df['Sales'] * 100).round(2)
-        print("   ✅ 利润率: Profit Margin")
+    # 注意：Profit Margin 列由 Dashboard 在运行时动态计算，不写入 CSV
+    # 这样保持与原始清洗数据一致，且 Dashboard 可根据筛选条件实时计算
 
     print(f"\n📋 清洗完成: {df.shape[0]} 行 × {df.shape[1]} 列")
 

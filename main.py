@@ -6,6 +6,8 @@
     python main.py              # 显示帮助
     python main.py clean        # 运行数据清洗
     python main.py dashboard    # 启动仪表盘
+    python main.py export       # 导出关键图表
+    python main.py analysis     # 运行分析模块
     python main.py all          # 运行完整流程
 """
 
@@ -25,7 +27,9 @@ def show_help():
 
     python main.py clean        数据清洗（原始 → 清洗后）
     python main.py dashboard    启动 Streamlit 仪表盘
-    python main.py all          运行完整流程（清洗 + 仪表盘）
+    python main.py export       导出关键图表到 output/images/
+    python main.py analysis     运行 src/ 分析模块并输出指标
+    python main.py all          运行完整流程（清洗 + 导出 + 仪表盘）
 
 📁 项目结构：
 
@@ -35,8 +39,12 @@ def show_help():
     notebooks/               Jupyter 分析笔记
     src/
     ├── data/                数据处理脚本
+    ├── analysis/            可复用分析函数
+    ├── visualization/       图表导出与绘图工具
     ├── app.py               Streamlit 仪表盘
-    └── ...
+    └── run_analysis.py      分析模块入口
+    output/
+    └── images/              导出的关键图表
     reports/
     └── report.md            分析报告
 
@@ -45,7 +53,8 @@ def show_help():
     1. 激活虚拟环境：.venv\\Scripts\\activate
     2. 安装依赖：pip install -r requirements.txt
     3. 运行清洗：python main.py clean
-    4. 启动仪表盘：python main.py dashboard
+    4. 导出图表：python main.py export
+    5. 启动仪表盘：python main.py dashboard
 
 💡 更多信息请查看 README.md
 """)
@@ -95,20 +104,51 @@ def run_dashboard():
     return True
 
 
+def run_export():
+    """导出关键图表"""
+    print("\n🎨 开始导出关键图表...\n")
+    script = Path(__file__).parent / 'src' / 'visualization' / 'export_charts.py'
+    try:
+        subprocess.run([sys.executable, str(script)], check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ 导出失败: {e}")
+        return False
+
+
+def run_analysis():
+    """运行分析模块"""
+    print("\n📊 开始运行分析模块...\n")
+    script = Path(__file__).parent / 'src' / 'run_analysis.py'
+    try:
+        subprocess.run([sys.executable, str(script)], check=True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"\n❌ 分析失败: {e}")
+        return False
+
+
 def run_all():
     """运行完整流程"""
     print("\n🔄 运行完整流程...\n")
 
     # 1. 数据清洗
     print("=" * 60)
-    print("📋 步骤 1/2: 数据清洗")
+    print("📋 步骤 1/3: 数据清洗")
     print("=" * 60)
     if not run_clean():
         return False
 
-    # 2. 启动仪表盘
+    # 2. 导出图表
     print("\n" + "=" * 60)
-    print("📋 步骤 2/2: 启动仪表盘")
+    print("📋 步骤 2/3: 导出关键图表")
+    print("=" * 60)
+    if not run_export():
+        return False
+
+    # 3. 启动仪表盘
+    print("\n" + "=" * 60)
+    print("📋 步骤 3/3: 启动仪表盘")
     print("=" * 60)
     if not run_dashboard():
         return False
@@ -129,7 +169,11 @@ def main():
         run_clean()
     elif command in ['dashboard', 'dash', 'd', 'app']:
         run_dashboard()
-    elif command in ['all', 'a', 'full', 'f']:
+    elif command in ['export', 'e', 'charts']:
+        run_export()
+    elif command in ['analysis', 'analyze', 'a']:
+        run_analysis()
+    elif command in ['all', 'full', 'f']:
         run_all()
     elif command in ['help', 'h', '--help', '-h']:
         show_help()
