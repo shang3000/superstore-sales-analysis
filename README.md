@@ -20,15 +20,25 @@ superstore-sales-analysis/
 │   ├── raw/                    # 原始数据
 │   │   └── Sample-Superstore.csv
 │   └── processed/              # 清洗后数据
+│       └── superstore_cleaned.csv
 ├── notebooks/                  # Jupyter 分析笔记
 │   ├── 01_销售趋势分析.ipynb
 │   ├── 02_区域分析.ipynb
 │   ├── 03_品类分析.ipynb
 │   ├── 04_客户分析.ipynb
 │   └── 05_深度洞察.ipynb
-├── src/
-│   └── app.py                  # Streamlit 仪表盘
-├── reports/                    # 生成的报告
+├── src/                        # 工程化代码
+│   ├── app.py                  # Streamlit 仪表盘
+│   ├── data/clean_data.py      # 数据清洗
+│   ├── analysis/               # 分析函数模块
+│   ├── visualization/          # 可视化工具
+│   ├── utils/                  # 通用工具
+│   └── run_analysis.py         # 分析模块入口
+├── output/                     # 图表输出
+│   └── images/                 # 8 张关键图表
+├── reports/                    # 分析报告
+│   └── report.md
+├── main.py                     # 项目入口
 ├── start.bat                   # 启动脚本（Windows）
 ├── requirements.txt            # Python 依赖
 └── README.md
@@ -73,10 +83,53 @@ superstore-sales-analysis/
    # Windows - 双击 start.bat
    # 或命令行
    streamlit run src/app.py
+   
+   # 或统一入口
+   python main.py dashboard
    ```
+
+## 🎛️ 常用命令
+
+```bash
+python main.py clean        # 数据清洗
+python main.py export       # 导出关键图表
+python main.py analysis     # 运行分析模块
+python main.py dashboard    # 启动仪表盘
+python main.py all          # 完整流程（清洗 + 仪表盘）
+```
 
 6. **访问**
    打开浏览器访问 http://localhost:8501
+
+## 📈 关键可视化
+
+### 销售趋势
+整体销售额呈逐年上升趋势，第四季度季节性峰值明显。
+
+![Monthly Sales Trend](output/images/01_monthly_sales_trend.png)
+
+![Annual Sales & Profit](output/images/02_yearly_comparison.png)
+
+### 区域与品类
+西部区域销售额最高，Technology 利润率最高，Furniture 利润贡献最弱。
+
+![Region Analysis](output/images/03_region_analysis.png)
+
+![Region Category Heatmap](output/images/04_region_category_heatmap.png)
+
+![Sub-Category Profit](output/images/05_subcategory_profit.png)
+
+### 客户与折扣
+Consumer 占比过半但利润率最低；折扣一旦超过 30%，平均利润会跌入负区间。
+
+![Customer Segment](output/images/06_customer_segment.png)
+
+![Discount vs Profit](output/images/07_discount_profit.png)
+
+### 亏损维度
+Binders、Tables、Machines 是最主要的亏损子品类；Central 和 East 区域亏损额较大。
+
+![Loss Analysis](output/images/08_loss_analysis.png)
 
 ## 📈 分析模块
 
@@ -124,7 +177,11 @@ superstore-sales-analysis/
 - **数据处理**：Pandas, NumPy
 - **可视化**：Plotly, Matplotlib, Seaborn
 - **仪表盘**：Streamlit
-- **开发环境**：Jupyter Notebook
+- **分析环境**：Jupyter Notebook
+
+## 📊 分析入口
+
+除了 notebook 外，也可以通过 `src/run_analysis.py` 或 `python main.py analysis` 直接运行工程化分析模块，快速查看所有核心指标。
 
 ## 📝 License
 
